@@ -18,12 +18,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build an image from Dockerfile
-        run: docker build -t github-action-img1 .
+        run: docker build -t ${{ vars.DOCKER_IMAGE }} .
 
       - name: Tag the image
-        run: docker tag github-action-img1 ${{ vars.DOCKER_USERNAME }}/github-action-img1:v1
+        run: docker tag ${{ vars.DOCKER_IMAGE }} ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_IMAGE }}:v1
 
       - name: Push the image to dockerhub
-        run: docker push ${{ vars.DOCKER_USERNAME }}/github-action-img1:v1
+        run: docker push ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_IMAGE }}:v1
           
       
